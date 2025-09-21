@@ -10,7 +10,7 @@ Vite + React + TypeScript + TailwindCSS를 기반으로 개발되었습니다.
 ### 1. 저장소 클론
 
 ```bash
-git clone https://github.com/your-username/minimax_front.git
+git clone https://github.com/zzangmin2/minimax_front.git
 cd minimax_front
 ```
 
