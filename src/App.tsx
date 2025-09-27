@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Sidebar } from './components/Sidebar'
 import { MainContent } from './components/MainContent'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 function App() {
-  const [activeMenu, setActiveMenu] = useState('Market Analysis')
+  const [activeMenu, setActiveMenu] = useState('AI Combination')
 
   return (
     <div className="w-full flex h-screen bg-gray-100">
@@ -11,7 +12,7 @@ function App() {
       <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
       {/* 메인 콘텐츠 */}
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 p-6">
         <MainContent activeMenu={activeMenu} />
       </main>
     </div>
