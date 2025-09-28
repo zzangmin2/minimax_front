@@ -2,7 +2,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from './layout';
 import AICombination from '@/pages/AICombination';
-import DrugUsableBubble from '@/pages/MarketAnalysis/components/DrugUsableBubble';
+import MarketAnalysis from '@/pages/MarketAnalysis';
 
 export const ROUTES = [
   {
@@ -12,7 +12,7 @@ export const ROUTES = [
   },
   {
     path: '/market',
-    element: <DrugUsableBubble />,
+    element: <MarketAnalysis />,
     handle: { name: '시장 분석', eng: 'Market Analysis' },
   },
 ] as const;

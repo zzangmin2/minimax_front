@@ -14,17 +14,15 @@ export default function Layout() {
 
   return (
     <div className="w-full flex h-screen bg-gray-100">
-      {/* <aside className="w-64 shrink-0"> */}
       <Sidebar />
-      {/* </aside> */}
 
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 flex flex-col p-6 overflow-auto">
         <div className="flex items-center mb-6">
-          <h1 className="text-title text-text-primary mr-3">{name}</h1>
+          <h1 className="text-headline text-text-secondary mr-3">{name}</h1>
           <p className="text-subtitle text-text-inverseSecondary">{eng}</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-8 h-full">
+        <div className="flex-1">
           <Outlet />
         </div>
       </main>
