@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { Sidebar } from './components/Sidebar'
-import { MainContent } from './components/MainContent'
-import '@fortawesome/fontawesome-free/css/all.min.css'
+import { useState } from 'react';
+import { Sidebar } from './shared/Sidebar';
+import { MainContent } from './shared/MainContent';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
-  const [activeMenu, setActiveMenu] = useState('AI Combination')
+  const [activeMenu, setActiveMenu] = useState(0);
 
   return (
     <div className="w-full flex h-screen bg-gray-100">
@@ -16,7 +16,7 @@ function App() {
         <MainContent activeMenu={activeMenu} />
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
