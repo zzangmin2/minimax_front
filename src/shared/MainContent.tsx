@@ -1,12 +1,12 @@
-import { MENU_TITLES } from './constants/MenuTitles';
-import AICombination from '../pages/AICombination';
-import DrugUsableBubble from '../pages/MarketAnalysis/components/DrugUsableBubble';
+import { MENU_TITLES } from '@/shared/constants/MenuTitles';
+import AICombination from '@/pages/AICombination';
+import DrugUsableBubble from '@/pages/MarketAnalysis/components/DrugUsableBubble';
 
 type MainContentProps = {
   activeMenu: number;
 };
 
-export function MainContent({ activeMenu }: MainContentProps) {
+const MainContent = ({ activeMenu }: MainContentProps) => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center mb-6">
@@ -19,4 +19,6 @@ export function MainContent({ activeMenu }: MainContentProps) {
       </div>
     </div>
   );
-}
+};
+
+export default MainContent;
