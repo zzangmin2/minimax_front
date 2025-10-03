@@ -41,6 +41,24 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
       timestamp: new Date(),
       results: mockResults,
     },
+    {
+      id: Date.now().toString(),
+      query: 'Initial Search',
+      timestamp: new Date(),
+      results: mockResults,
+    },
+    {
+      id: Date.now().toString(),
+      query: 'Initial Search',
+      timestamp: new Date(),
+      results: mockResults,
+    },
+    {
+      id: Date.now().toString(),
+      query: 'Initial Search',
+      timestamp: new Date(),
+      results: mockResults,
+    },
   ]);
 
   // 검색 기록 추가

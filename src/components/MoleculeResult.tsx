@@ -39,10 +39,28 @@ const MoleculeResult = () => {
       qed: 0.66,
       tpsa: 34,
     },
+    {
+      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
+      toxicity: 0.37,
+      pKi: 8.06,
+      pKd: 9.01,
+      logP: 3.46,
+      qed: 0.66,
+      tpsa: 34,
+    },
+    {
+      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
+      toxicity: 0.37,
+      pKi: 8.06,
+      pKd: 9.01,
+      logP: 3.46,
+      qed: 0.66,
+      tpsa: 34,
+    },
   ];
 
   return (
-    <div className="pt-10 pl-25 pr-25 space-y-6">
+    <div className="h-full pt-6 px-4 md:px-8 lg:px-12 space-y-6 overflow-y-auto overflow-x-hidden">
       {/* Summary Card */}
       <div className="bg-white rounded-lg p-6">
         <div className="text-lg font-semibold mb-4">{summary.smiles}</div>
@@ -80,18 +98,20 @@ const MoleculeResult = () => {
         {candidates.map((item, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-lg p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+            className="bg-white rounded-lg p-4 flex flex-col lg:flex-row items-start gap-4 overflow-hidden"
           >
             {/* Left: SMILES */}
-            <div className="flex items-start gap-4">
-              <div className="w-50 h-24 bg-gray-100 flex items-center justify-center rounded">
+            <div className="flex flex-col sm:flex-row items-start gap-4 flex-1 min-w-0">
+              <div className="w-40 h-20 bg-gray-100 flex items-center justify-center rounded flex-shrink-0">
                 <span className="text-xs text-gray-400">구조 이미지</span>
               </div>
-              <div className="w-100 text-subtitle20-">{item.smiles}</div>
+              <div className="flex-1 text-body16 break-all min-w-0 overflow-hidden">
+                {item.smiles}
+              </div>
             </div>
 
             {/* Middle: Property Info */}
-            <div className="w-74 bg-tertiary p-4 rounded-lg grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-sm flex-1">
+            <div className="w-full lg:w-80 bg-tertiary p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-sm min-w-0">
               <div>
                 <span className="text-gray-500">독성</span>{' '}
                 <span className="font-medium text-red-500">{item.toxicity}</span>
@@ -119,7 +139,7 @@ const MoleculeResult = () => {
             </div>
 
             {/* Right: Button */}
-            <button className="w-20 bg-primary text-white py-2 rounded-lg cursor-pointer">
+            <button className="w-20 bg-primary text-white py-2 px-4 rounded-lg cursor-pointer">
               최적화
             </button>
           </div>
