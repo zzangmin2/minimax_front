@@ -6,13 +6,13 @@ export interface SearchRecord {
   id: string;
   query: string;
   timestamp: Date;
-  results?: string[];
+  results?: { [key: string]: string };
 }
 
 // context 타입 정의
 interface SearchHistoryContextType {
   searchHistory: SearchRecord[];
-  addSearchRecord: (query: string, results?: string[]) => void;
+  addSearchRecord: (query: string, results?: { [key: string]: string }) => void;
   removeSearchRecord: (id: string) => void;
   clearSearchHistory: () => void;
 }
@@ -24,15 +24,42 @@ export { SearchHistoryContext };
 
 // provider 컴포넌트
 export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [searchHistory, setSearchHistory] = useState<SearchRecord[]>([]);
+  const mockResults = {
+    Smiles: 'CC1=CC=CC=C1N',
+    ID: 'CHEMBL1381',
+    Name: 'O-TOLYLAMINE',
+    MaxPhase: 'Preclinical',
+    MolecularFormula: 'C7H9N',
+    MolecularWeight: '107.16',
+    MoleculeType: 'Small molecule',
+  };
+
+  const [searchHistory, setSearchHistory] = useState<SearchRecord[]>([
+    {
+      id: Date.now().toString(),
+      query: 'Initial Search',
+      timestamp: new Date(),
+      results: mockResults,
+    },
+  ]);
 
   // 검색 기록 추가
-  const addSearchRecord = (query: string, results?: string[]) => {
+  const addSearchRecord = (query: string) => {
+    const mockResults = {
+      Smiles: 'CC1=CC=CC=C1N',
+      ID: 'CHEMBL1381',
+      Name: 'O-TOLYLAMINE',
+      MaxPhase: 'Preclinical',
+      MolecularFormula: 'C7H9N',
+      MolecularWeight: '107.16',
+      MoleculeType: 'Small molecule',
+    };
+
     const newRecord: SearchRecord = {
       id: Date.now().toString(),
       query,
       timestamp: new Date(),
-      results,
+      results: mockResults,
     };
     setSearchHistory(prev => [newRecord, ...prev]);
   };

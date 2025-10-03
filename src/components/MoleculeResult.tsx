@@ -1,0 +1,132 @@
+import React from 'react';
+
+const MoleculeResult = () => {
+  const summary = {
+    id: 'CHEMBL1381',
+    name: 'O-TOLYLAMINE',
+    maxPhase: 'Preclinical',
+    molecularFormula: 'C7H9N',
+    molecularWeight: 107.16,
+    moleculeType: 'Small molecule',
+    smiles: 'CC1=CC=CC=C1N',
+  };
+
+  const candidates = [
+    {
+      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
+      toxicity: 0.37,
+      pKi: 8.06,
+      pKd: 9.01,
+      logP: 3.46,
+      qed: 0.66,
+      tpsa: 34,
+    },
+    {
+      smiles: 'CC(=O)NC1=CC=C(O)C=C1\nCC(=O)NC1=CC=C(O)C=C1\nCC(=O)NC1=CC=C(O)C=C1',
+      toxicity: 0.37,
+      pKi: 8.06,
+      pKd: 9.01,
+      logP: 3.46,
+      qed: 0.66,
+      tpsa: 34,
+    },
+    {
+      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
+      toxicity: 0.37,
+      pKi: 8.06,
+      pKd: 9.01,
+      logP: 3.46,
+      qed: 0.66,
+      tpsa: 34,
+    },
+  ];
+
+  return (
+    <div className="pt-10 pl-25 pr-25 space-y-6">
+      {/* Summary Card */}
+      <div className="bg-white rounded-lg p-6">
+        <div className="text-lg font-semibold mb-4">{summary.smiles}</div>
+        <div className="bg-background rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+          <div>
+            <span className="text-gray-500">ID</span>{' '}
+            <span className="font-medium">{summary.id}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Max Phase</span>{' '}
+            <span className="font-medium">{summary.maxPhase}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Molecular Weight</span>{' '}
+            <span className="font-medium">{summary.molecularWeight}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Name</span>{' '}
+            <span className="font-medium">{summary.name}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Molecular Formula</span>{' '}
+            <span className="font-medium">{summary.molecularFormula}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Molecule Type</span>{' '}
+            <span className="font-medium">{summary.moleculeType}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Candidate List */}
+      <div className="space-y-4">
+        <div className="text-sm text-gray-600">총 {candidates.length}개</div>
+        {candidates.map((item, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-lg p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+          >
+            {/* Left: SMILES */}
+            <div className="flex items-start gap-4">
+              <div className="w-50 h-24 bg-gray-100 flex items-center justify-center rounded">
+                <span className="text-xs text-gray-400">구조 이미지</span>
+              </div>
+              <div className="w-100 text-subtitle20-">{item.smiles}</div>
+            </div>
+
+            {/* Middle: Property Info */}
+            <div className="w-74 bg-tertiary p-4 rounded-lg grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-sm flex-1">
+              <div>
+                <span className="text-gray-500">독성</span>{' '}
+                <span className="font-medium text-red-500">{item.toxicity}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">PKi</span>{' '}
+                <span className="font-medium">{item.pKi}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">PKd</span>{' '}
+                <span className="font-medium">{item.pKd}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">QED</span>{' '}
+                <span className="font-medium">{item.qed}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">logP</span>{' '}
+                <span className="font-medium">{item.logP}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">TPSA</span>{' '}
+                <span className="font-medium">{item.tpsa}</span>
+              </div>
+            </div>
+
+            {/* Right: Button */}
+            <button className="w-20 bg-primary text-white py-2 rounded-lg cursor-pointer">
+              최적화
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default MoleculeResult;

@@ -10,7 +10,7 @@ const EmptySearchState: React.FC = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col items-center justify-center bg-white rounded-lg shadow p-8 space-y-10">
+    <div className="h-full flex flex-col items-center justify-center bg-white rounded-lg shadow p-8 m-6 space-y-10">
       <div className="text-center space-y-2">
         <h2 className="text-display text-primary">AI Combination</h2>
         <p className="text-body14 text-text-tertiary text-center">

@@ -9,8 +9,9 @@
   --color-primary: #26c6da;
   --color-secondary: #b2f2f7;
   --color-accent: #00b0ff;
-  --color-background: #ffffff;
   --color-line: #e5e5e5;
+  --color-background: #f7fcfc;
+  --color-tertiary: #fafafa;
 
   /* 텍스트 */
   --color-text-primary: #000000;

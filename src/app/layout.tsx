@@ -9,7 +9,7 @@ export default function Layout() {
       <div className="w-full flex h-screen bg-gray-100 flex flex-col">
         <Header />
 
-        <main className="flex-1 flex flex-col p-6 overflow-auto">
+        <main className="flex-1 flex flex-col overflow-auto">
           <Outlet />
         </main>
       </div>

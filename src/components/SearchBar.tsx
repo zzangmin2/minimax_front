@@ -8,7 +8,17 @@ const SearchBar: React.FC = () => {
   const handleSearch = () => {
     if (searchQuery.trim()) {
       // 실제로는 여기서 API 호출을 하고 결과를 받아올 것
-      const mockResults = [`${searchQuery}`];
+
+      const mockResults = {
+        Smiles: 'CC1=CC=CC=C1N',
+        ID: 'CHEMBL1381',
+        Name: 'O-TOLYLAMINE',
+        MaxPhase: 'Preclinical',
+        MolecularFormula: 'C7H9N',
+        MolecularWeight: '107.16',
+        MoleculeType: 'Small molecule',
+      };
+
       addSearchRecord(searchQuery.trim(), mockResults);
       setSearchQuery('');
     }
