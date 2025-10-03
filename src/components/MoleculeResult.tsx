@@ -1,15 +1,29 @@
 import React from 'react';
+import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 
 const MoleculeResult = () => {
-  const summary = {
-    id: 'CHEMBL1381',
-    name: 'O-TOLYLAMINE',
-    maxPhase: 'Preclinical',
-    molecularFormula: 'C7H9N',
-    molecularWeight: 107.16,
-    moleculeType: 'Small molecule',
-    smiles: 'CC1=CC=CC=C1N',
-  };
+  const { activeRecord } = useSearchHistory();
+
+  // 활성화된 기록이 없으면 기본값 사용
+  const summary = activeRecord?.results
+    ? {
+        id: activeRecord.results.ID || 'CHEMBL1381',
+        name: activeRecord.results.Name || 'O-TOLYLAMINE',
+        maxPhase: activeRecord.results.MaxPhase || 'Preclinical',
+        molecularFormula: activeRecord.results.MolecularFormula || 'C7H9N',
+        molecularWeight: activeRecord.results.MolecularWeight || '107.16',
+        moleculeType: activeRecord.results.MoleculeType || 'Small molecule',
+        smiles: activeRecord.results.Smiles || 'CC1=CC=CC=C1N',
+      }
+    : {
+        id: 'CHEMBL1381',
+        name: 'O-TOLYLAMINE',
+        maxPhase: 'Preclinical',
+        molecularFormula: 'C7H9N',
+        molecularWeight: '107.16',
+        moleculeType: 'Small molecule',
+        smiles: 'CC1=CC=CC=C1N',
+      };
 
   const candidates = [
     {
@@ -145,6 +159,7 @@ const MoleculeResult = () => {
           </div>
         ))}
       </div>
+      <div className="h-20"></div>
     </div>
   );
 };

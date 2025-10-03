@@ -1,8 +1,13 @@
 import React from 'react';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
+import type { SearchRecord } from '@/shared/contexts/SearchHistoryContext';
 
 const SearchHistoryList: React.FC = () => {
-  const { searchHistory } = useSearchHistory();
+  const { searchHistory, activeRecord, setActiveRecord } = useSearchHistory();
+
+  const handleItemClick = (record: SearchRecord) => {
+    setActiveRecord(record);
+  };
 
   return (
     <div className="fixed top-16 left-0 w-80 h-[calc(100vh-4rem)] bg-white flex flex-col z-10">
@@ -16,13 +21,18 @@ const SearchHistoryList: React.FC = () => {
           {searchHistory.map(record => (
             <div
               key={record.id}
-              className="border border-line rounded-lg p-4 hover:shadow-md transition"
+              onClick={() => handleItemClick(record)}
+              className={`border rounded-lg p-4 hover:shadow-md transition cursor-pointer ${
+                activeRecord?.id === record.id
+                  ? 'border-2 border-primary bg-opacity-5 shadow-md'
+                  : 'border-line'
+              }`}
             >
               <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2.5">
                 <span className="text-xs text-gray-400">구조 이미지</span>
               </div>
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-body16 text-text-primary">{record.results!.Smiles}</h3>
+                <h3 className={`text-body16 text-text-primary`}>{record.results!.Smiles}</h3>
               </div>
               <p className="text-body14 text-text-tertiary">
                 {record.results!.ID} | {record.results!.Name}

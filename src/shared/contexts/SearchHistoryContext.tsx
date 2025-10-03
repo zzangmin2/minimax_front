@@ -12,9 +12,11 @@ export interface SearchRecord {
 // context 타입 정의
 interface SearchHistoryContextType {
   searchHistory: SearchRecord[];
+  activeRecord: SearchRecord | null;
   addSearchRecord: (query: string, results?: { [key: string]: string }) => void;
   removeSearchRecord: (id: string) => void;
   clearSearchHistory: () => void;
+  setActiveRecord: (record: SearchRecord | null) => void;
 }
 
 // context 생성
@@ -36,30 +38,33 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
 
   const [searchHistory, setSearchHistory] = useState<SearchRecord[]>([
     {
-      id: Date.now().toString(),
+      id: Math.random().toString(),
       query: 'Initial Search',
       timestamp: new Date(),
       results: mockResults,
     },
     {
-      id: Date.now().toString(),
+      id: Math.random().toString(),
       query: 'Initial Search',
       timestamp: new Date(),
       results: mockResults,
     },
     {
-      id: Date.now().toString(),
+      id: Math.random().toString(),
       query: 'Initial Search',
       timestamp: new Date(),
       results: mockResults,
     },
     {
-      id: Date.now().toString(),
+      id: Math.random().toString(),
       query: 'Initial Search',
       timestamp: new Date(),
       results: mockResults,
     },
   ]);
+
+  // 활성화된 아이템 상태 추가
+  const [activeRecord, setActiveRecord] = useState<SearchRecord | null>(null);
 
   // 검색 기록 추가
   const addSearchRecord = (query: string) => {
@@ -96,9 +101,11 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
     <SearchHistoryContext.Provider
       value={{
         searchHistory,
+        activeRecord,
         addSearchRecord,
         removeSearchRecord,
         clearSearchHistory,
+        setActiveRecord,
       }}
     >
       {children}
