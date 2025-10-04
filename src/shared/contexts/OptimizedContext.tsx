@@ -1,20 +1,10 @@
 import React, { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import type { Molecule } from '@/shared/types/molecule';
 
 /* -------------------------------------------------------
  * 1. 타입 정의
  * -----------------------------------------------------*/
-
-// 개별 분자 정보 타입
-export interface Molecule {
-  id: string;
-  name: string;
-  smiles: string;
-  molecularFormula: string;
-  molecularWeight: number;
-  moleculeType: string;
-  maxPhase: string;
-}
 
 // 최적화 결과 항목 타입
 export interface OptimizedResult {

@@ -1,31 +1,25 @@
 import React, { useState } from 'react';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 import OptimizeModal from './modals/OptimizeModal';
+import type { Molecule } from '@/shared/types/molecule';
+import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
 
 const CandidateMoleculeResult = () => {
   const { activeRecord } = useSearchHistory();
   const [openOptimizedModal, setOpenOptimizedModal] = useState(false);
 
   // 활성화된 기록이 없으면 기본값 사용
-  const summary = activeRecord?.results
+  const summary: Molecule = activeRecord?.results
     ? {
-        id: activeRecord.results.ID || 'CHEMBL1381',
-        name: activeRecord.results.Name || 'O-TOLYLAMINE',
-        maxPhase: activeRecord.results.MaxPhase || 'Preclinical',
-        molecularFormula: activeRecord.results.MolecularFormula || 'C7H9N',
-        molecularWeight: activeRecord.results.MolecularWeight || '107.16',
-        moleculeType: activeRecord.results.MoleculeType || 'Small molecule',
-        smiles: activeRecord.results.Smiles || 'CC1=CC=CC=C1N',
+        id: activeRecord.results.ID ?? MOCK_MOLECULE.id,
+        name: activeRecord.results.Name ?? MOCK_MOLECULE.name,
+        maxPhase: activeRecord.results.MaxPhase ?? MOCK_MOLECULE.maxPhase,
+        molecularFormula: activeRecord.results.MolecularFormula ?? MOCK_MOLECULE.molecularFormula,
+        molecularWeight: activeRecord.results.MolecularWeight ?? MOCK_MOLECULE.molecularWeight,
+        moleculeType: activeRecord.results.MoleculeType ?? MOCK_MOLECULE.moleculeType,
+        smiles: activeRecord.results.Smiles ?? MOCK_MOLECULE.smiles,
       }
-    : {
-        id: 'CHEMBL1381',
-        name: 'O-TOLYLAMINE',
-        maxPhase: 'Preclinical',
-        molecularFormula: 'C7H9N',
-        molecularWeight: '107.16',
-        moleculeType: 'Small molecule',
-        smiles: 'CC1=CC=CC=C1N',
-      };
+    : MOCK_MOLECULE;
 
   const candidates = [
     {

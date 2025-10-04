@@ -1,7 +1,12 @@
 import React, { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
+import { MOCK_SEARCH_HISTORY } from '@/shared/mocks/search.mock';
 
-// 데이터 타입 정의
+/* -------------------------------------------------------
+ * 1. 타입 정의
+ * -----------------------------------------------------*/
+
 export interface SearchRecord {
   id: string;
   query: string;
@@ -9,7 +14,10 @@ export interface SearchRecord {
   results?: { [key: string]: string };
 }
 
-// context 타입 정의
+/* -------------------------------------------------------
+ * 2. Context Value 타입
+ * -----------------------------------------------------*/
+
 interface SearchHistoryContextType {
   searchHistory: SearchRecord[];
   activeRecord: SearchRecord | null;
@@ -19,71 +27,38 @@ interface SearchHistoryContextType {
   setActiveRecord: (record: SearchRecord | null) => void;
 }
 
-// context 생성
-const SearchHistoryContext = createContext<SearchHistoryContextType | undefined>(undefined);
+/* -------------------------------------------------------
+ * 3. Context 생성
+ * -----------------------------------------------------*/
 
+const SearchHistoryContext = createContext<SearchHistoryContextType | undefined>(undefined);
 export { SearchHistoryContext };
 
-// provider 컴포넌트
+/* -------------------------------------------------------
+ * 4. Provider 정의
+ * -----------------------------------------------------*/
+
 export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const mockResults = {
-    Smiles: 'CC1=CC=CC=C1N',
-    ID: 'CHEMBL1381',
-    Name: 'O-TOLYLAMINE',
-    MaxPhase: 'Preclinical',
-    MolecularFormula: 'C7H9N',
-    MolecularWeight: '107.16',
-    MoleculeType: 'Small molecule',
-  };
-
-  const [searchHistory, setSearchHistory] = useState<SearchRecord[]>([
-    {
-      id: Math.random().toString(),
-      query: 'Initial Search',
-      timestamp: new Date(),
-      results: mockResults,
-    },
-    {
-      id: Math.random().toString(),
-      query: 'Initial Search',
-      timestamp: new Date(),
-      results: mockResults,
-    },
-    {
-      id: Math.random().toString(),
-      query: 'Initial Search',
-      timestamp: new Date(),
-      results: mockResults,
-    },
-    {
-      id: Math.random().toString(),
-      query: 'Initial Search',
-      timestamp: new Date(),
-      results: mockResults,
-    },
-  ]);
-
-  // 활성화된 아이템 상태 추가
+  const [searchHistory, setSearchHistory] = useState<SearchRecord[]>(MOCK_SEARCH_HISTORY);
   const [activeRecord, setActiveRecord] = useState<SearchRecord | null>(null);
 
   // 검색 기록 추가
   const addSearchRecord = (query: string) => {
-    const mockResults = {
-      Smiles: 'CC1=CC=CC=C1N',
-      ID: 'CHEMBL1381',
-      Name: 'O-TOLYLAMINE',
-      MaxPhase: 'Preclinical',
-      MolecularFormula: 'C7H9N',
-      MolecularWeight: '107.16',
-      MoleculeType: 'Small molecule',
-    };
-
     const newRecord: SearchRecord = {
       id: Date.now().toString(),
       query,
       timestamp: new Date(),
-      results: mockResults,
+      results: {
+        Smiles: MOCK_MOLECULE.smiles,
+        ID: MOCK_MOLECULE.id,
+        Name: MOCK_MOLECULE.name,
+        MaxPhase: MOCK_MOLECULE.maxPhase,
+        MolecularFormula: MOCK_MOLECULE.molecularFormula,
+        MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+        MoleculeType: MOCK_MOLECULE.moleculeType,
+      },
     };
+
     setSearchHistory(prev => [newRecord, ...prev]);
   };
 
