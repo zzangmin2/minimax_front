@@ -33,6 +33,7 @@ const Header = () => {
         <p className="text-body14 pl-2">최적화 원하는 물질 검색</p>
       </button>
 
+      {/* 검색 모달 */}
       <SearchModal open={openSearchModal} onClose={() => setOpenSearchModal(false)} />
     </div>
   );

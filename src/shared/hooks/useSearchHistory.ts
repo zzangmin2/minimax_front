@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SearchHistoryContext } from '../contexts/SearchHistoryContext';
+import { SearchHistoryContext } from '@/shared/contexts/SearchHistoryContext';
 
 export const useSearchHistory = () => {
   const context = useContext(SearchHistoryContext);

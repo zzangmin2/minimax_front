@@ -1,14 +1,8 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import { SEARCH_CATEGORIES } from '@/shared/constants/SearchCategories';
 
 const EmptySearchState: React.FC = () => {
-  const categories = [
-    { name: '암 치료제', icon: 'fas fa-heartbeat' },
-    { name: '항 바이러스제', icon: 'fas fa-shield-alt' },
-    { name: '신경 질환', icon: 'fas fa-brain' },
-    { name: '대사 질환', icon: 'fas fa-dna' },
-  ];
-
   return (
     <div className="h-[calc(100vh-7rem)] flex flex-col items-center justify-center bg-white rounded-lg shadow p-8 m-6 space-y-10">
       <div className="text-center space-y-2">
@@ -22,7 +16,7 @@ const EmptySearchState: React.FC = () => {
 
       {/* 카테고리 카드 */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-        {categories.map(cat => (
+        {SEARCH_CATEGORIES.map(cat => (
           <div
             key={cat.name}
             className="flex flex-col items-center justify-center w-36 h-36 border-1 border-line rounded-xl bg-white hover:shadow-lg transition cursor-pointer"

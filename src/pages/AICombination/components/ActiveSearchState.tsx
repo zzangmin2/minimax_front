@@ -1,13 +1,13 @@
 import React from 'react';
 import SearchHistoryList from '@/pages/AICombination/components/SearchHistoryList';
-import MoleculeResult from '@/pages/AICombination/components/MoleculeResult';
+import CandidateMoleculeResult from '@/pages/AICombination/components/CandidateMoleculeResult';
 
 const ActiveSearchState = () => {
   return (
     <div className="h-full flex">
       <SearchHistoryList />
       <div className="flex-1">
-        <MoleculeResult />
+        <CandidateMoleculeResult />
       </div>
     </div>
   );

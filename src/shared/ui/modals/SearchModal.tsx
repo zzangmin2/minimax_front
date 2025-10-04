@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import SearchBar from '@/pages/AICombination/components/SearchBar';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
+import { SEARCH_CATEGORIES } from '@/shared/constants/SearchCategories';
 
 interface SearchModalProps {
   open: boolean;
@@ -8,12 +9,6 @@ interface SearchModalProps {
 }
 
 const SearchModal: React.FC<SearchModalProps> = ({ open, onClose }) => {
-  const categories = [
-    { name: '암 치료제', icon: 'fas fa-heartbeat' },
-    { name: '항 바이러스제', icon: 'fas fa-shield-alt' },
-    { name: '신경 질환', icon: 'fas fa-brain' },
-    { name: '대사 질환', icon: 'fas fa-dna' },
-  ];
   const { searchHistory } = useSearchHistory();
   const prevHistoryLength = useRef<number>(searchHistory.length);
 
@@ -40,7 +35,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ open, onClose }) => {
 
         {/* 카테고리 카드 */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-          {categories.map(cat => (
+          {SEARCH_CATEGORIES.map(cat => (
             <div
               key={cat.name}
               className="flex flex-col items-center justify-center w-36 h-36 border-1 border-line rounded-xl bg-white hover:shadow-lg transition cursor-pointer"

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
+import OptimizeModal from './modals/OptimizeModal';
 
-const MoleculeResult = () => {
+const CandidateMoleculeResult = () => {
   const { activeRecord } = useSearchHistory();
+  const [openOptimizedModal, setOpenOptimizedModal] = useState(false);
 
   // 활성화된 기록이 없으면 기본값 사용
   const summary = activeRecord?.results
@@ -152,16 +154,21 @@ const MoleculeResult = () => {
               </div>
             </div>
 
-            {/* Right: Button */}
-            <button className="w-20 bg-primary text-white py-2 px-4 rounded-lg cursor-pointer">
+            <button
+              className="w-20 bg-primary text-white py-2 px-4 rounded-lg cursor-pointer"
+              onClick={() => setOpenOptimizedModal(true)}
+            >
               최적화
             </button>
           </div>
         ))}
       </div>
       <div className="h-20"></div>
+
+      {/* 최적화 모달 */}
+      <OptimizeModal open={openOptimizedModal} onClose={() => setOpenOptimizedModal(false)} />
     </div>
   );
 };
 
-export default MoleculeResult;
+export default CandidateMoleculeResult;
