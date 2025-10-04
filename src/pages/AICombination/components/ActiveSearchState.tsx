@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchHistoryList from '@/components/SearchHistoryList';
-import MoleculeResult from '@/components/MoleculeResult';
+import SearchHistoryList from '@/pages/AICombination/components/SearchHistoryList';
+import MoleculeResult from '@/pages/AICombination/components/MoleculeResult';
 
 const ActiveSearchState = () => {
   return (

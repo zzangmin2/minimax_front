@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import { Outlet } from 'react-router-dom';
-import Header from '@/components/Header';
+import Header from '@/shared/ui/Header';
 import AppProviders from './AppProviders';
 
 export default function Layout() {

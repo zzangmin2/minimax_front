@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
-import EmptySearchState from '@/components/EmptySearchState';
-import ActiveSearchState from '@/components/ActiveSearchState';
-import SearchHistoryList from '@/components/SearchHistoryList';
+import EmptySearchState from '@/pages/AICombination/components/EmptySearchState';
+import ActiveSearchState from '@/pages/AICombination/components/ActiveSearchState';
+import SearchHistoryList from '@/pages/AICombination/components/SearchHistoryList';
 
 const AICombination = () => {
   const { searchHistory } = useSearchHistory();

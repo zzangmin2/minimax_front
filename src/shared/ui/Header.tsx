@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '@/app/routes';
 import { useState } from 'react';
-import SearchModal from '@/components/modals/SearchModal';
+import SearchModal from '@/shared/ui/modals/SearchModal';
 
 const Header = () => {
   const [openSearchModal, setOpenSearchModal] = useState(false);

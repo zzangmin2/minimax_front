@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import SearchBar from '@/components/SearchBar';
+import SearchBar from '@/pages/AICombination/components/SearchBar';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 
 interface SearchModalProps {
@@ -19,7 +19,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ open, onClose }) => {
 
   useEffect(() => {
     if (!open) return;
-
     const currentLength = searchHistory.length;
     if (currentLength > prevHistoryLength.current) {
       onClose();
