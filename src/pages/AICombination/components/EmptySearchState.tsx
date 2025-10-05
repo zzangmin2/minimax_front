@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from '../../../shared/ui/SearchBar';
 import { SEARCH_CATEGORIES } from '@/shared/constants/SearchCategories';
 
 const EmptySearchState: React.FC = () => {

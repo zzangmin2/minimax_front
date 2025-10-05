@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import SearchBar from '@/pages/AICombination/components/SearchBar';
+import SearchBar from '@/shared/ui/SearchBar';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 import { SEARCH_CATEGORIES } from '@/shared/constants/SearchCategories';
 

@@ -39,7 +39,7 @@ export { SearchHistoryContext };
  * -----------------------------------------------------*/
 
 export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [searchHistory, setSearchHistory] = useState<SearchRecord[]>(MOCK_SEARCH_HISTORY);
+  const [searchHistory, setSearchHistory] = useState<SearchRecord[]>([]);
   const [activeRecord, setActiveRecord] = useState<SearchRecord | null>(null);
 
   // 검색 기록 추가

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
-import OptimizeModal from './modals/OptimizeModal';
+import OptimizeModal from '@/pages/AICombination/components/modals/OptimizeModal';
 import type { Molecule } from '@/shared/types/molecule';
 import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
 
