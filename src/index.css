@@ -7,11 +7,14 @@
 
   /* 컬러 토큰 */
   --color-primary: #26c6da;
+  --color-primary-hover: #20bfd4;
   --color-secondary: #b2f2f7;
   --color-accent: #00b0ff;
   --color-line: #e5e5e5;
   --color-background: #f7fcfc;
   --color-tertiary: #fafafa;
+  --color-up-bg: #fff3f0;
+  --color-down-bg: #e6f4ff;
 
   /* 텍스트 */
   --color-text-primary: #000000;
@@ -21,6 +24,8 @@
   --color-text-inverseSecondary: #e0e0e0;
   --color-text-accentPositive: #00c896;
   --color-text-accentWarning: #ff5722;
+  --color-text-up: #ff5722;
+  --color-text-down: #2196f3;
 }
 
 /* 전역 리셋 최소 */
