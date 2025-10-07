@@ -3,6 +3,7 @@ import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 import OptimizeModal from '@/pages/AICombination/components/modals/OptimizeModal';
 import type { Molecule } from '@/shared/types/molecule';
 import { MOCK_MOLECULE, MOCK_OPTIMIZED_MOLECULE_RESULTS } from '@/shared/mocks/molecule.mock';
+import { useOptimizationsQuery } from '@/shared/hooks/useMoleculeQueries';
 
 const CandidateMoleculeResult = () => {
   const { activeRecord } = useSearchHistory();
@@ -20,6 +21,10 @@ const CandidateMoleculeResult = () => {
         smiles: activeRecord.results.Smiles ?? MOCK_MOLECULE.smiles,
       }
     : MOCK_MOLECULE;
+
+  const { data: candidates, isLoading, error } = useOptimizationsQuery(summary.id);
+
+  console.log(candidates);
 
   return (
     <div className="h-full pt-6 px-4 md:px-8 lg:px-12 space-y-6 overflow-y-auto overflow-x-hidden">
@@ -56,6 +61,8 @@ const CandidateMoleculeResult = () => {
 
       {/* Candidate List */}
       <div className="space-y-4">
+        {isLoading && <div className="text-gray-500">불러오는 중…</div>}
+        {error && <div className="text-red-500">목업 서버 응답 오류</div>}
         <div className="text-sm text-gray-600">총 {MOCK_OPTIMIZED_MOLECULE_RESULTS.length}개</div>
         {MOCK_OPTIMIZED_MOLECULE_RESULTS.map((item, idx) => (
           <div
