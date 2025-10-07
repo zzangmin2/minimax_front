@@ -1,6 +1,8 @@
+import type { OptimizedMoleculeResult } from '@/shared/types/molecule';
 import React from 'react';
 
 interface OptimizedMoleculeCardProps {
+  data: OptimizedMoleculeResult;
   selected?: boolean;
   onSelect?: () => void;
 }
@@ -8,7 +10,36 @@ interface OptimizedMoleculeCardProps {
 const OptimizedMoleculeCard: React.FC<OptimizedMoleculeCardProps> = ({
   selected = false,
   onSelect,
+  data,
 }) => {
+  const { base, delta } = data;
+
+  const renderRow = (label: string, value: number, change: number) => {
+    const isUp = change > 0;
+    const isDown = change < 0;
+    return (
+      <div className="flex justify-between">
+        <span>{label}</span>
+        <div className="flex items-center">
+          <span className="text-text-primary text-body14 pr-1">{value.toFixed(2)}</span>
+          {change !== 0 && (
+            <span
+              className={`rounded px-1 ml-1 text-xs ${
+                isUp
+                  ? 'text-text-up bg-up-bg'
+                  : isDown
+                    ? 'text-text-down bg-down-bg'
+                    : 'text-text-tertiary'
+              }`}
+            >
+              {isUp ? `+${change.toFixed(2)}` : change.toFixed(2)}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       className={`relative border rounded-xl p-5 bg-white transition cursor-pointer ${
@@ -30,54 +61,17 @@ const OptimizedMoleculeCard: React.FC<OptimizedMoleculeCardProps> = ({
         <div className="w-40 h-20 bg-gray-50 border border-line flex items-center justify-center rounded">
           <span className="text-xs text-text-primary">구조 이미지</span>
         </div>
-        <div className="text-body16 text-text-primary break-all">CC(=O)NC1=CC=C(O)C=C1</div>
+        <div className="text-body16 text-text-primary break-all">{base.smiles}</div>
       </div>
 
       {/* 수치 테이블 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-sm text-text-secondary">
-        {/* 왼쪽 열 */}
-        <div className="flex justify-between">
-          <span>독성</span>
-          <div>
-            <span className="text-text-primary text-body14 pr-1">0.37</span>
-            <span className="text-text-up bg-up-bg rounded px-1 ml-1">+0.2</span>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <span>PKi</span>
-          <div>
-            <span className="text-text-primary text-body14 pr-1">8.06</span>
-            <span className="text-text-up bg-up-bg rounded px-1 ml-1">+0.2</span>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <span>PKd</span>
-          <div>
-            <span className="text-text-primary text-body14 pr-1">9.01</span>
-            <span className="text-text-down bg-down-bg rounded px-1 ml-1">-0.2</span>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <span>QED</span>
-          <div>
-            <span className="text-text-primary text-body14 pr-1">8.06</span>
-            <span className="text-text-up bg-up-bg rounded px-1 ml-1">+0.2</span>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <span>logP</span>
-          <div>
-            <span className="text-text-primary text-body14 pr-1">3.46</span>
-            <span className="text-text-down bg-down-bg rounded px-1 ml-1">-0.2</span>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <span>TPSA</span>
-          <div>
-            <span className="text-text-primary text-body14 pr-1">8.06</span>
-            <span className="text-text-up bg-up-bg rounded px-1 ml-1">+0.2</span>
-          </div>
-        </div>
+        {renderRow('독성', base.toxicity, delta.toxicity)}
+        {renderRow('PKi', base.pKi, delta.pKi)}
+        {renderRow('PKd', base.pKd, delta.pKd)}
+        {renderRow('QED', base.qed, delta.qed)}
+        {renderRow('logP', base.logP, delta.logP)}
+        {renderRow('TPSA', base.tpsa, delta.tpsa)}
       </div>
     </div>
   );

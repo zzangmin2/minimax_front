@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 import OptimizeModal from '@/pages/AICombination/components/modals/OptimizeModal';
 import type { Molecule } from '@/shared/types/molecule';
-import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
+import { MOCK_MOLECULE, MOCK_OPTIMIZED_MOLECULE_RESULTS } from '@/shared/mocks/molecule.mock';
 
 const CandidateMoleculeResult = () => {
   const { activeRecord } = useSearchHistory();
@@ -20,54 +20,6 @@ const CandidateMoleculeResult = () => {
         smiles: activeRecord.results.Smiles ?? MOCK_MOLECULE.smiles,
       }
     : MOCK_MOLECULE;
-
-  const candidates = [
-    {
-      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
-      toxicity: 0.37,
-      pKi: 8.06,
-      pKd: 9.01,
-      logP: 3.46,
-      qed: 0.66,
-      tpsa: 34,
-    },
-    {
-      smiles: 'CC(=O)NC1=CC=C(O)C=C1\nCC(=O)NC1=CC=C(O)C=C1\nCC(=O)NC1=CC=C(O)C=C1',
-      toxicity: 0.37,
-      pKi: 8.06,
-      pKd: 9.01,
-      logP: 3.46,
-      qed: 0.66,
-      tpsa: 34,
-    },
-    {
-      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
-      toxicity: 0.37,
-      pKi: 8.06,
-      pKd: 9.01,
-      logP: 3.46,
-      qed: 0.66,
-      tpsa: 34,
-    },
-    {
-      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
-      toxicity: 0.37,
-      pKi: 8.06,
-      pKd: 9.01,
-      logP: 3.46,
-      qed: 0.66,
-      tpsa: 34,
-    },
-    {
-      smiles: 'CC(=O)NC1=CC=C(O)C=C1',
-      toxicity: 0.37,
-      pKi: 8.06,
-      pKd: 9.01,
-      logP: 3.46,
-      qed: 0.66,
-      tpsa: 34,
-    },
-  ];
 
   return (
     <div className="h-full pt-6 px-4 md:px-8 lg:px-12 space-y-6 overflow-y-auto overflow-x-hidden">
@@ -104,8 +56,8 @@ const CandidateMoleculeResult = () => {
 
       {/* Candidate List */}
       <div className="space-y-4">
-        <div className="text-sm text-gray-600">총 {candidates.length}개</div>
-        {candidates.map((item, idx) => (
+        <div className="text-sm text-gray-600">총 {MOCK_OPTIMIZED_MOLECULE_RESULTS.length}개</div>
+        {MOCK_OPTIMIZED_MOLECULE_RESULTS.map((item, idx) => (
           <div
             key={idx}
             className="bg-white rounded-lg p-4 flex flex-col lg:flex-row items-start gap-4 overflow-hidden"

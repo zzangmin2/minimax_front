@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import OptimizedMoleculeCard from '@/pages/AICombination/components/modals/OptimizeModal/components/OptimizedMoleculeCard';
+import { MOCK_OPTIMIZED_RESULTS } from '@/shared/mocks/molecule.mock';
 
 interface OptimizeModalProps {
   open: boolean;
@@ -35,18 +36,19 @@ const OptimizeModal: React.FC<OptimizeModalProps> = ({ open, onClose }) => {
           </div>
 
           <p className="text-text-secondary text-body14 mb-5">
-            {' '}
-            총 n개의 분자가 최적화 대상입니다.
+            총 {MOCK_OPTIMIZED_RESULTS.length}개의 분자가 최적화 대상입니다.
           </p>
           <div className="grid sm:grid-cols-2 gap-6">
-            {[0, 1, 2, 3].map((_, idx) => (
+            {MOCK_OPTIMIZED_RESULTS.map((result, idx) => (
               <OptimizedMoleculeCard
                 key={idx}
+                data={result}
                 selected={selectedIdx === idx}
                 onSelect={() => setSelectedIdx(idx)}
               />
             ))}
           </div>
+          <div className="h-10" />
         </div>
         <div className="sticky bottom-0 bg-white pt-4">
           <button
