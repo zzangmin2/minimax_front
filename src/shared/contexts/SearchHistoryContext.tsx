@@ -58,31 +58,46 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
       // 기본 목업 데이터를 여러 개 생성
       const mockMoleculeList = [
         {
-          Smiles: MOCK_MOLECULE.smiles,
-          ID: MOCK_MOLECULE.id,
-          Name: MOCK_MOLECULE.name,
-          MaxPhase: MOCK_MOLECULE.maxPhase,
-          MolecularFormula: MOCK_MOLECULE.molecularFormula,
-          MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-          MoleculeType: MOCK_MOLECULE.moleculeType,
+          id: Date.now().toString() + Math.floor(Math.random() * 1000).toString(),
+          query,
+          timestamp: new Date(),
+          results: {
+            Smiles: MOCK_MOLECULE.smiles,
+            ID: MOCK_MOLECULE.id,
+            Name: MOCK_MOLECULE.name,
+            MaxPhase: MOCK_MOLECULE.maxPhase,
+            MolecularFormula: MOCK_MOLECULE.molecularFormula,
+            MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+            MoleculeType: MOCK_MOLECULE.moleculeType,
+          },
         },
         {
-          Smiles: MOCK_MOLECULE.smiles,
-          ID: MOCK_MOLECULE.id,
-          Name: MOCK_MOLECULE.name,
-          MaxPhase: MOCK_MOLECULE.maxPhase,
-          MolecularFormula: MOCK_MOLECULE.molecularFormula,
-          MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-          MoleculeType: MOCK_MOLECULE.moleculeType,
+          id: Date.now().toString() + Math.floor(Math.random() * 1000).toString(),
+          query,
+          timestamp: new Date(),
+          results: {
+            Smiles: MOCK_MOLECULE.smiles,
+            ID: MOCK_MOLECULE.id,
+            Name: MOCK_MOLECULE.name,
+            MaxPhase: MOCK_MOLECULE.maxPhase,
+            MolecularFormula: MOCK_MOLECULE.molecularFormula,
+            MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+            MoleculeType: MOCK_MOLECULE.moleculeType,
+          },
         },
         {
-          Smiles: MOCK_MOLECULE.smiles,
-          ID: MOCK_MOLECULE.id,
-          Name: MOCK_MOLECULE.name,
-          MaxPhase: MOCK_MOLECULE.maxPhase,
-          MolecularFormula: MOCK_MOLECULE.molecularFormula,
-          MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-          MoleculeType: MOCK_MOLECULE.moleculeType,
+          id: Date.now().toString() + Math.floor(Math.random() * 1000).toString(),
+          query,
+          timestamp: new Date(),
+          results: {
+            Smiles: MOCK_MOLECULE.smiles,
+            ID: MOCK_MOLECULE.id,
+            Name: MOCK_MOLECULE.name,
+            MaxPhase: MOCK_MOLECULE.maxPhase,
+            MolecularFormula: MOCK_MOLECULE.molecularFormula,
+            MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+            MoleculeType: MOCK_MOLECULE.moleculeType,
+          },
         },
       ];
 
@@ -104,7 +119,7 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
     }
 
     const newRecord: SearchRecord = {
-      id: Date.now().toString(),
+      id: Date.now().toString() + Math.floor(Math.random() * 1000).toString(),
       query,
       timestamp: new Date(),
       results: finalResults as { [key: string]: string },

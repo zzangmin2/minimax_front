@@ -7,6 +7,7 @@ const SearchHistoryList: React.FC = () => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const handleItemClick = (record: SearchRecord) => {
+    console.log(record);
     setActiveRecord(record);
   };
 
@@ -29,7 +30,8 @@ const SearchHistoryList: React.FC = () => {
     const categoryResults = record.results?.[categoryName];
 
     // JSON 문자열을 파싱하여 배열로 변환
-    let moleculeList: Array<{ [key: string]: string }> = [];
+    let moleculeList: SearchRecord[] = [];
+
     if (typeof categoryResults === 'string') {
       try {
         moleculeList = JSON.parse(categoryResults);
@@ -41,49 +43,43 @@ const SearchHistoryList: React.FC = () => {
     }
 
     return (
-      <div
-        key={record.id}
-        className={`border rounded-lg overflow-hidden transition cursor-pointer ${
-          activeRecord?.id === record.id
-            ? 'border-2 border-primary bg-opacity-5 shadow-md'
-            : 'border-line'
-        }`}
-      >
+      <div key={record.id} className={`rounded-lg overflow-hidden transition cursor-pointer`}>
         {/* 드롭다운 헤더 */}
         <div
           onClick={e => toggleExpand(record.id, e)}
-          className="flex justify-between items-center p-4 hover:bg-gray-50 transition"
+          className="flex border border-line rounded-lg justify-between items-center p-4 hover:bg-gray-50 transition"
         >
           <div className="flex-1">
             <h3 className="text-body16 text-text-primary font-medium">{categoryName}</h3>
-            <p className="text-body14 text-text-tertiary">
-              총 {record.results?.ResultCount || moleculeList.length}개 결과
-            </p>
           </div>
           <div className="ml-2">
             <i
-              className={`fas ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-gray-400`}
+              className={`fas ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-text-tertiary`}
             ></i>
           </div>
         </div>
 
         {/* 드롭다운 콘텐츠 */}
         {isExpanded && (
-          <div className="border-t border-gray-100">
+          <div className="mt-4 mb-4">
             {moleculeList.map((molecule, index) => (
               <div
                 key={index}
-                onClick={() => handleItemClick(record)}
-                className="p-4 border-b border-gray-50 last:border-b-0 hover:bg-gray-25 transition"
+                onClick={() => handleItemClick(molecule)}
+                className={`p-4 mb-4 rounded-lg border border-line bg-tertiary last:border-b-0 hover:bg-gray-25 transition hover:shadow-md ${
+                  activeRecord?.id === molecule.id
+                    ? 'border-2 border-primary bg-opacity-5 shadow-md'
+                    : 'border-line'
+                }`}
               >
-                <div className="w-full h-20 bg-gray-100 flex items-center justify-center rounded mb-2">
+                <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2">
                   <span className="text-xs text-gray-400">구조 이미지</span>
                 </div>
                 <div className="flex justify-between items-start mb-1">
-                  <h4 className="text-body14 text-text-primary">{molecule.Smiles}</h4>
+                  <h4 className="text-body16 text-text-primary">{molecule.results?.Smiles}</h4>
                 </div>
-                <p className="text-body12 text-text-tertiary">
-                  {molecule.ID} | {molecule.Name}
+                <p className="text-body14 text-text-tertiary">
+                  {molecule.results?.ID} | {molecule.results?.Name}
                 </p>
               </div>
             ))}
