@@ -20,10 +20,10 @@ const AiOptimizationLoading: React.FC = () => {
         </motion.div>
 
         {/* 타이틀 */}
-        <h2 className="text-primary text-body14 mb-2 tracking-wide">MINIMAX AI</h2>
+        <h2 className="text-primary text-body16 mb-2 tracking-wide">MINIMAX AI</h2>
 
         {/* 상태 문구 */}
-        <p className="text-text-tertiary text-sm mb-6">최적화 물질 추출 중...</p>
+        <p className="text-text-tertiary text-body14 mb-6">최적화 물질 추출 중...</p>
 
         {/* 로딩 인디케이터 (dots) */}
         <div className="flex gap-2">

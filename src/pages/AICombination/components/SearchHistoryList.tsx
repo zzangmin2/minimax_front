@@ -47,10 +47,10 @@ const SearchHistoryList: React.FC = () => {
         {/* 드롭다운 헤더 */}
         <div
           onClick={e => toggleExpand(record.id, e)}
-          className="flex border border-line rounded-lg justify-between items-center p-4 hover:bg-gray-50 transition"
+          className="flex bg-gray-100 rounded-lg justify-between items-center p-4 hover:bg-gray-200 transition"
         >
-          <div className="flex-1">
-            <h3 className="text-body16 text-text-primary font-medium">{categoryName}</h3>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-body16 text-text-primary font-medium truncate">{categoryName}</h3>
           </div>
           <div className="ml-2">
             <i
@@ -66,7 +66,7 @@ const SearchHistoryList: React.FC = () => {
               <div
                 key={index}
                 onClick={() => handleItemClick(molecule)}
-                className={`p-4 mb-4 rounded-lg border border-line bg-tertiary last:border-b-0 hover:bg-gray-25 transition hover:shadow-md ${
+                className={`border mb-4 rounded-lg p-4 hover:shadow-md transition cursor-pointer ${
                   activeRecord?.id === molecule.id
                     ? 'border-2 border-primary bg-opacity-5 shadow-md'
                     : 'border-line'
@@ -75,8 +75,12 @@ const SearchHistoryList: React.FC = () => {
                 <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2">
                   <span className="text-xs text-gray-400">구조 이미지</span>
                 </div>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="text-body16 text-text-primary">{molecule.results?.Smiles}</h4>
+
+                <div className="w-full mb-1">
+                  <p className="text-caption mb-1 text-text-tertiary">{categoryName}</p>
+                  <h4 className="text-body16 text-text-primary line-clamp-2">
+                    {molecule.results?.Smiles}
+                  </h4>
                 </div>
                 <p className="text-body14 text-text-tertiary">
                   {molecule.results?.ID} | {molecule.results?.Name}
@@ -103,8 +107,8 @@ const SearchHistoryList: React.FC = () => {
         <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2.5">
           <span className="text-xs text-gray-400">구조 이미지</span>
         </div>
-        <div className="flex justify-between items-start mb-2">
-          <h3 className={`text-body16 text-text-primary`}>{record.results!.Smiles}</h3>
+        <div className="w-full mb-1">
+          <h3 className={`text-body16 text-text-primary line-clamp-2`}>{record.results!.Smiles}</h3>
         </div>
         <p className="text-body14 text-text-tertiary">
           {record.results!.ID} | {record.results!.Name}

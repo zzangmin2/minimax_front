@@ -1,5 +1,5 @@
 import type { SearchRecord } from '@/shared/contexts/SearchHistoryContext';
-import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
+import { MOCK_DISEASE_SCAFFOLD } from '@/shared/mocks/molecule.mock';
 
 /** 검색 기록 목업 데이터 */
 export const MOCK_SEARCH_HISTORY: SearchRecord[] = [
@@ -8,13 +8,13 @@ export const MOCK_SEARCH_HISTORY: SearchRecord[] = [
     query: 'Aspirin',
     timestamp: new Date(),
     results: {
-      Smiles: MOCK_MOLECULE.smiles,
-      ID: MOCK_MOLECULE.id,
-      Name: MOCK_MOLECULE.name,
-      MaxPhase: MOCK_MOLECULE.maxPhase,
-      MolecularFormula: MOCK_MOLECULE.molecularFormula,
-      MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-      MoleculeType: MOCK_MOLECULE.moleculeType,
+      Smiles: MOCK_DISEASE_SCAFFOLD.disease_smiles,
+      ID: MOCK_DISEASE_SCAFFOLD.disease_Chembl_ID,
+      Name: MOCK_DISEASE_SCAFFOLD.disease_molecule_name,
+      MaxPhase: 'Phase 3',
+      MolecularFormula: MOCK_DISEASE_SCAFFOLD.disease_formula,
+      MolecularWeight: '493.60',
+      MoleculeType: MOCK_DISEASE_SCAFFOLD.disease_mol_type,
     },
   },
   {
@@ -22,13 +22,13 @@ export const MOCK_SEARCH_HISTORY: SearchRecord[] = [
     query: 'Ibuprofen',
     timestamp: new Date(),
     results: {
-      Smiles: MOCK_MOLECULE.smiles,
-      ID: MOCK_MOLECULE.id,
-      Name: MOCK_MOLECULE.name,
-      MaxPhase: MOCK_MOLECULE.maxPhase,
-      MolecularFormula: MOCK_MOLECULE.molecularFormula,
-      MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-      MoleculeType: MOCK_MOLECULE.moleculeType,
+      Smiles: MOCK_DISEASE_SCAFFOLD.disease_smiles,
+      ID: MOCK_DISEASE_SCAFFOLD.disease_Chembl_ID,
+      Name: MOCK_DISEASE_SCAFFOLD.disease_molecule_name,
+      MaxPhase: 'Phase 3',
+      MolecularFormula: MOCK_DISEASE_SCAFFOLD.disease_formula,
+      MolecularWeight: '493.60',
+      MoleculeType: MOCK_DISEASE_SCAFFOLD.disease_mol_type,
     },
   },
 ];

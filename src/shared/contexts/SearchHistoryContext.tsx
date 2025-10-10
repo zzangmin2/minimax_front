@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
-import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
+import { MOCK_DISEASE_SCAFFOLD } from '@/shared/mocks/molecule.mock';
 
 /* -------------------------------------------------------
  * 1. 타입 정의
@@ -62,13 +62,11 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
           query,
           timestamp: new Date(),
           results: {
-            Smiles: MOCK_MOLECULE.smiles,
-            ID: MOCK_MOLECULE.id,
-            Name: MOCK_MOLECULE.name,
-            MaxPhase: MOCK_MOLECULE.maxPhase,
-            MolecularFormula: MOCK_MOLECULE.molecularFormula,
-            MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-            MoleculeType: MOCK_MOLECULE.moleculeType,
+            Smiles: MOCK_DISEASE_SCAFFOLD.disease_smiles,
+            ID: MOCK_DISEASE_SCAFFOLD.disease_Chembl_ID,
+            Name: MOCK_DISEASE_SCAFFOLD.disease_molecule_name,
+            MolecularFormula: MOCK_DISEASE_SCAFFOLD.disease_formula,
+            MoleculeType: MOCK_DISEASE_SCAFFOLD.disease_mol_type,
           },
         },
         {
@@ -76,13 +74,11 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
           query,
           timestamp: new Date(),
           results: {
-            Smiles: MOCK_MOLECULE.smiles,
-            ID: MOCK_MOLECULE.id,
-            Name: MOCK_MOLECULE.name,
-            MaxPhase: MOCK_MOLECULE.maxPhase,
-            MolecularFormula: MOCK_MOLECULE.molecularFormula,
-            MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-            MoleculeType: MOCK_MOLECULE.moleculeType,
+            Smiles: MOCK_DISEASE_SCAFFOLD.disease_smiles,
+            ID: MOCK_DISEASE_SCAFFOLD.disease_Chembl_ID,
+            Name: MOCK_DISEASE_SCAFFOLD.disease_molecule_name,
+            MolecularFormula: MOCK_DISEASE_SCAFFOLD.disease_formula,
+            MoleculeType: MOCK_DISEASE_SCAFFOLD.disease_mol_type,
           },
         },
         {
@@ -90,13 +86,11 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
           query,
           timestamp: new Date(),
           results: {
-            Smiles: MOCK_MOLECULE.smiles,
-            ID: MOCK_MOLECULE.id,
-            Name: MOCK_MOLECULE.name,
-            MaxPhase: MOCK_MOLECULE.maxPhase,
-            MolecularFormula: MOCK_MOLECULE.molecularFormula,
-            MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-            MoleculeType: MOCK_MOLECULE.moleculeType,
+            Smiles: MOCK_DISEASE_SCAFFOLD.disease_smiles,
+            ID: MOCK_DISEASE_SCAFFOLD.disease_Chembl_ID,
+            Name: MOCK_DISEASE_SCAFFOLD.disease_molecule_name,
+            MolecularFormula: MOCK_DISEASE_SCAFFOLD.disease_formula,
+            MoleculeType: MOCK_DISEASE_SCAFFOLD.disease_mol_type,
           },
         },
       ];
@@ -108,13 +102,11 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
       // 단순 문자열인 경우에는 스마일즈 검색으로 간주
       finalResults = {
         SearchType: 'molecule',
-        Smiles: MOCK_MOLECULE.smiles,
-        ID: MOCK_MOLECULE.id,
-        Name: MOCK_MOLECULE.name,
-        MaxPhase: MOCK_MOLECULE.maxPhase,
-        MolecularFormula: MOCK_MOLECULE.molecularFormula,
-        MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
-        MoleculeType: MOCK_MOLECULE.moleculeType,
+        Smiles: MOCK_DISEASE_SCAFFOLD.disease_smiles,
+        ID: MOCK_DISEASE_SCAFFOLD.disease_Chembl_ID,
+        Name: MOCK_DISEASE_SCAFFOLD.disease_molecule_name,
+        MolecularFormula: MOCK_DISEASE_SCAFFOLD.disease_formula,
+        MoleculeType: MOCK_DISEASE_SCAFFOLD.disease_mol_type,
       };
     }
 
