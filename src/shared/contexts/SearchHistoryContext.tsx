@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import { MOCK_MOLECULE } from '@/shared/mocks/molecule.mock';
-import { MOCK_SEARCH_HISTORY } from '@/shared/mocks/search.mock';
 
 /* -------------------------------------------------------
  * 1. 타입 정의
@@ -44,11 +43,56 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
 
   // 검색 기록 추가
   const addSearchRecord = (query: string) => {
-    const newRecord: SearchRecord = {
-      id: Date.now().toString(),
-      query,
-      timestamp: new Date(),
-      results: {
+    console.log(query);
+
+    // TODO:현재 목업 데이터 사용 영역임 로직 맞게 다시 수정되어야함
+    // query에 $가 포함된 경우, 카테고리 검색으로 간주 (예: $HIV)
+    const isCategorySearch = query.includes('$');
+
+    let finalResults: { [key: string]: string } | { [key: string]: unknown };
+
+    if (isCategorySearch) {
+      // 카테고리 검색 결과는 카테고리명 : 스마일즈 리스트 형태로 setSearchHistory에 리스트 형태로 추가
+      const categoryName = query.replace('$', '');
+
+      // 기본 목업 데이터를 여러 개 생성
+      const mockMoleculeList = [
+        {
+          Smiles: MOCK_MOLECULE.smiles,
+          ID: MOCK_MOLECULE.id,
+          Name: MOCK_MOLECULE.name,
+          MaxPhase: MOCK_MOLECULE.maxPhase,
+          MolecularFormula: MOCK_MOLECULE.molecularFormula,
+          MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+          MoleculeType: MOCK_MOLECULE.moleculeType,
+        },
+        {
+          Smiles: MOCK_MOLECULE.smiles,
+          ID: MOCK_MOLECULE.id,
+          Name: MOCK_MOLECULE.name,
+          MaxPhase: MOCK_MOLECULE.maxPhase,
+          MolecularFormula: MOCK_MOLECULE.molecularFormula,
+          MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+          MoleculeType: MOCK_MOLECULE.moleculeType,
+        },
+        {
+          Smiles: MOCK_MOLECULE.smiles,
+          ID: MOCK_MOLECULE.id,
+          Name: MOCK_MOLECULE.name,
+          MaxPhase: MOCK_MOLECULE.maxPhase,
+          MolecularFormula: MOCK_MOLECULE.molecularFormula,
+          MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
+          MoleculeType: MOCK_MOLECULE.moleculeType,
+        },
+      ];
+
+      finalResults = {
+        [categoryName]: mockMoleculeList,
+      };
+    } else {
+      // 단순 문자열인 경우에는 스마일즈 검색으로 간주
+      finalResults = {
+        SearchType: 'molecule',
         Smiles: MOCK_MOLECULE.smiles,
         ID: MOCK_MOLECULE.id,
         Name: MOCK_MOLECULE.name,
@@ -56,10 +100,18 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
         MolecularFormula: MOCK_MOLECULE.molecularFormula,
         MolecularWeight: MOCK_MOLECULE.molecularWeight.toString(),
         MoleculeType: MOCK_MOLECULE.moleculeType,
-      },
+      };
+    }
+
+    const newRecord: SearchRecord = {
+      id: Date.now().toString(),
+      query,
+      timestamp: new Date(),
+      results: finalResults as { [key: string]: string },
     };
 
     setSearchHistory(prev => [newRecord, ...prev]);
+    console.log(searchHistory);
   };
 
   // 특정 기록 삭제

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import SearchBar from '@/shared/ui/SearchBar';
 import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
-import { SEARCH_CATEGORIES } from '@/shared/constants/SearchCategories';
 
 interface SearchModalProps {
   open: boolean;
@@ -32,19 +31,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ open, onClose }) => {
         onClick={e => e.stopPropagation()}
       >
         <SearchBar />
-
-        {/* 카테고리 카드 */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-          {SEARCH_CATEGORIES.map(cat => (
-            <div
-              key={cat.name}
-              className="flex flex-col items-center justify-center w-36 h-36 border-1 border-line rounded-xl bg-white hover:shadow-lg transition cursor-pointer"
-            >
-              <i className={`${cat.icon} text-2xl text-primary mb-4`}></i>
-              <span className="text-body16 text-text-secondary">{cat.name}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );

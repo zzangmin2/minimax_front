@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '@/app/routes';
 import { useState } from 'react';
+import { useSearchHistory } from '@/shared/hooks/useSearchHistory';
 import SearchModal from '@/shared/ui/modals/SearchModal';
 
 const Header = () => {
   const [openSearchModal, setOpenSearchModal] = useState(false);
+  const { searchHistory } = useSearchHistory();
 
   return (
     <div className="w-full flex justify-between h-16 bg-slate-800 text-white px-4 py-3 items-center">
@@ -25,13 +27,17 @@ const Header = () => {
         </nav>
       </div>
 
-      <button
-        className="w-64 flex items-center ml-4 px-4 py-2 rounded bg-slate-700 text-text-inverseSecondary cursor-pointer hover:bg-slate-600 transition"
-        onClick={() => setOpenSearchModal(true)}
-      >
-        <i className="fas fa-search w-5" />
-        <p className="text-body14 pl-2">최적화 원하는 물질 검색</p>
-      </button>
+      {searchHistory.length > 0 ? (
+        <button
+          className="w-64 flex items-center ml-4 px-4 py-2 rounded bg-slate-700 text-text-inverseSecondary cursor-pointer hover:bg-slate-600 transition"
+          onClick={() => setOpenSearchModal(true)}
+        >
+          <i className="fas fa-search w-5" />
+          <p className="text-body14 pl-2">최적화 원하는 물질 검색</p>
+        </button>
+      ) : (
+        <div />
+      )}
 
       {/* 검색 모달 */}
       <SearchModal open={openSearchModal} onClose={() => setOpenSearchModal(false)} />
