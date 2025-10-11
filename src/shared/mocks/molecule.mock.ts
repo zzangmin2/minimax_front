@@ -149,7 +149,7 @@ export const MOCK_DISEASE_GENERATED_SCAFFOLD: DiseaseGeneratedScaffold[] = [
 // 추가 최적화 결과 데이터
 export const MOCK_OPTIMIZED: CandidateMoleculeResult[] = [
   {
-    smiles: 'CC(=O)NC1최적화(O)C=C1',
+    smiles: 'CC(=O)NC1O)C=C1',
     toxicity: 0.37,
     pKi: 8.06,
     pKd: 9.01,
@@ -158,7 +158,7 @@ export const MOCK_OPTIMIZED: CandidateMoleculeResult[] = [
     tpsa: 34,
   },
   {
-    smiles: 'CC(=O)NC1최적화(O)C=C1',
+    smiles: 'CC(=O)NC1O)C=C1',
     toxicity: 0.37,
     pKi: 8.06,
     pKd: 9.01,
@@ -167,7 +167,7 @@ export const MOCK_OPTIMIZED: CandidateMoleculeResult[] = [
     tpsa: 34,
   },
   {
-    smiles: 'CC(=O)NC1최적화(O)C=C1',
+    smiles: 'CC(=O)NC1O)C=C1',
     toxicity: 0.37,
     pKi: 8.06,
     pKd: 9.01,
@@ -176,7 +176,7 @@ export const MOCK_OPTIMIZED: CandidateMoleculeResult[] = [
     tpsa: 34,
   },
   {
-    smiles: 'CC(=O)NC1최적화(O)C=C1',
+    smiles: 'CC(=O)NC1O)C=C1',
     toxicity: 0.37,
     pKi: 8.06,
     pKd: 9.01,

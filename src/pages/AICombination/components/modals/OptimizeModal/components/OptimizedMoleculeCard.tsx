@@ -58,8 +58,12 @@ const OptimizedMoleculeCard: React.FC<OptimizedMoleculeCardProps> = ({
 
       {/* 분자 구조 이미지 */}
       <div className="flex flex-col sm:flex-row items-center justify-start gap-4 mb-4">
-        <div className="w-40 h-20 bg-gray-50 border border-line flex items-center justify-center rounded">
-          <span className="text-xs text-text-primary">구조 이미지</span>
+        <div className="w-40 h-20 bg-gray-50 border border-line flex items-center justify-center rounded overflow-hidden">
+          <img
+            src="/src/assets/ex_smiles.png"
+            alt="분자 구조"
+            className="w-full h-full object-contain"
+          />
         </div>
         <div className="text-body16 text-text-primary break-all">{base.smiles}</div>
       </div>

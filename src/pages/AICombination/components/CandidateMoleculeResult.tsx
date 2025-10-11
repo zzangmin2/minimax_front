@@ -94,8 +94,12 @@ const CandidateMoleculeResult = () => {
           >
             {/* Left: SMILES */}
             <div className="flex flex-col sm:flex-row items-start gap-4 flex-1 min-w-0">
-              <div className="w-40 h-20 bg-gray-100 flex items-center justify-center rounded flex-shrink-0">
-                <span className="text-xs text-gray-400">구조 이미지</span>
+              <div className="w-40 h-20 bg-gray-100 flex items-center justify-center rounded flex-shrink-0 overflow-hidden">
+                <img
+                  src="/src/assets/ex_smiles.png"
+                  alt="분자 구조"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="flex-1 text-body16 break-all min-w-0 overflow-hidden">
                 {item.dnew_smiles}

@@ -72,8 +72,12 @@ const SearchHistoryList: React.FC = () => {
                     : 'border-line'
                 }`}
               >
-                <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2">
-                  <span className="text-xs text-gray-400">구조 이미지</span>
+                <div className="w-full h-30 flex items-center justify-center rounded mb-2 overflow-hidden">
+                  <img
+                    src="/src/assets/ex_smiles.png"
+                    alt="분자 구조"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
 
                 <div className="w-full mb-1">
@@ -104,8 +108,12 @@ const SearchHistoryList: React.FC = () => {
             : 'border-line'
         }`}
       >
-        <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2.5">
-          <span className="text-xs text-gray-400">구조 이미지</span>
+        <div className="w-full h-30 bg-gray-100 flex items-center justify-center rounded mb-2.5 overflow-hidden">
+          <img
+            src="/src/assets/ex_smiles.png"
+            alt="분자 구조"
+            className="w-full h-full object-contain"
+          />
         </div>
         <div className="w-full mb-1">
           <h3 className={`text-body16 text-text-primary line-clamp-2`}>{record.results!.Smiles}</h3>
