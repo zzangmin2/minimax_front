@@ -1,6 +1,39 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { MOCK_DISEASE_SCAFFOLD } from '@/shared/mocks/molecule.mock';
+
+/* -------------------------------------------------------
+ * 0. 로컬 스토리지 관련 상수 및 유틸리티
+ * -----------------------------------------------------*/
+
+const SEARCH_HISTORY_KEY = 'minimax_search_history';
+
+// 로컬 스토리지에서 검색 기록 불러오기
+const loadSearchHistoryFromStorage = (): SearchRecord[] => {
+  try {
+    const stored = localStorage.getItem(SEARCH_HISTORY_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      // timestamp를 Date 객체로 복원
+      return parsed.map((record: SearchRecord & { timestamp: string }) => ({
+        ...record,
+        timestamp: new Date(record.timestamp),
+      }));
+    }
+  } catch (error) {
+    console.error('로컬 스토리지에서 검색 기록을 불러오는 중 오류 발생:', error);
+  }
+  return [];
+};
+
+// 로컬 스토리지에 검색 기록 저장하기
+const saveSearchHistoryToStorage = (history: SearchRecord[]) => {
+  try {
+    localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(history));
+  } catch (error) {
+    console.error('로컬 스토리지에 검색 기록을 저장하는 중 오류 발생:', error);
+  }
+};
 
 /* -------------------------------------------------------
  * 1. 타입 정의
@@ -40,6 +73,19 @@ export { SearchHistoryContext };
 export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [searchHistory, setSearchHistory] = useState<SearchRecord[]>([]);
   const [activeRecord, setActiveRecord] = useState<SearchRecord | null>(null);
+
+  // 컴포넌트 마운트 시 로컬 스토리지에서 검색 기록 불러오기
+  useEffect(() => {
+    const storedHistory = loadSearchHistoryFromStorage();
+    setSearchHistory(storedHistory);
+  }, []);
+
+  // 검색 기록이 변경될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    if (searchHistory.length > 0) {
+      saveSearchHistoryToStorage(searchHistory);
+    }
+  }, [searchHistory]);
 
   // 검색 기록 추가
   const addSearchRecord = (query: string) => {
@@ -129,6 +175,12 @@ export const SearchHistoryProvider: React.FC<{ children: ReactNode }> = ({ child
   // 전체 기록 삭제
   const clearSearchHistory = () => {
     setSearchHistory([]);
+    // 로컬 스토리지에서도 삭제
+    try {
+      localStorage.removeItem(SEARCH_HISTORY_KEY);
+    } catch (error) {
+      console.error('로컬 스토리지에서 검색 기록을 삭제하는 중 오류 발생:', error);
+    }
   };
 
   return (
